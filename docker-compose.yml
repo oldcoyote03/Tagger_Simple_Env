@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+
+  flask-api:
+    container_name: flask-api
+    ports:
+      - 5000:5000
+    image: oldcoyote03/tagger-api:v0.5
+    depends_on:
+      - roach
+    command: sleep infinity
+
+  roach:
+    container_name: roach
+    image: cockroachdb/cockroach:v21.2.9
+    command: start-single-node --insecure
+    ports:
+      - 26257:26257
+      - 8080:8080
+
+  db-init:
+    container_name: db-init
+    image: docker:20.10.12
+    volumes:
+      - ./setup.sh:/tmp/setup.sh
+      - /var/run/docker.sock:/var/run/docker.sock
+    entrypoint: "/bin/sh"
+    command: "/tmp/setup.sh"
+
