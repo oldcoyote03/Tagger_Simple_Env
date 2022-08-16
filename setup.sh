@@ -13,16 +13,18 @@ echo "Services initialized"
 sleep 1
 
 docker exec roach ./cockroach sql --insecure --execute="CREATE DATABASE IF NOT EXISTS tagger_db;"
+#docker exec roach ./cockroach sql --insecure --execute="DROP DATABASE IF EXISTS tagger_db;"
 
 echo "DB schema initialized"
 #sleep infinity
 sleep 2
 
 #docker exec -it db-init /bin/sh
-docker exec -d flask-api python /tagger_api/run.py
-sleep 7
-echo "API deployed"
+#docker exec -d flask-api python /tagger_api/run.py
+#echo "API deployed"
+#sleep 5
 
+docker exec flask-api pytest /tagger_api/app/test -s
 #docker exec -it flask-api /bin/bash
 #netstat -tulnp | grep :5000
 #kill 

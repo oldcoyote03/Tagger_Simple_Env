@@ -6,7 +6,7 @@ services:
     container_name: flask-api
     ports:
       - 5000:5000
-    image: oldcoyote03/tagger-api:v0.5
+    image: oldcoyote03/tagger-api:v0.7
     depends_on:
       - roach
     command: sleep infinity
