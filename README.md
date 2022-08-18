@@ -1,6 +1,7 @@
 # Tagger_Local_Env
 
-./push-img.sh -t v0.7 -c
+Build and push image with tag and using cache
+`./push-img.sh -t v0.8 -c`
 
 Build the image
 Note: Image will rebuild if app 'develop' branch changes. Ref: [How to prevent Dockerfile caching git clone](https://stackoverflow.com/questions/36996046/how-to-prevent-dockerfile-caching-git-clone)
