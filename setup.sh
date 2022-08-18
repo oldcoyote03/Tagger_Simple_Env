@@ -24,7 +24,7 @@ sleep 2
 #echo "API deployed"
 #sleep 5
 
-docker exec flask-api pytest /tagger_api/app/test -s
+docker exec flask-api pytest /tagger_api/app/test -v -s
 #docker exec -it flask-api /bin/bash
 #netstat -tulnp | grep :5000
 #kill 
