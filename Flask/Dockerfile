@@ -4,7 +4,8 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get -y install git
 RUN python -m pip install --upgrade pip
-ENV SQLALCHEMY_DATABASE_URI=cockroachdb://root@roach:26257/tagger_db?sslmode=disable
+#ENV SQLALCHEMY_DATABASE_URI=cockroachdb://root@roach:26257/tagger_db?sslmode=disable
+ENV SQLALCHEMY_DATABASE_URI=cockroachdb://root@host.docker.internal:26257/tagger_db?sslmode=disable
 WORKDIR /
 ADD https://api.github.com/repos/oldcoyote03/Tagger_App/git/refs/heads/develop version.json
 RUN git clone https://github.com/oldcoyote03/Tagger_App.git tagger_api
