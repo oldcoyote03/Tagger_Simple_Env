@@ -3,7 +3,7 @@ apk add --no-cache curl
 echo "curl installed"
 
 echo "Wait for services to initialize"
-sleep 7
+sleep 20
 
 docker ps
 #docker exec roach1 ./cockroach init --insecure
@@ -15,7 +15,6 @@ sleep 1
 docker exec roach ./cockroach sql --insecure --execute="CREATE DATABASE IF NOT EXISTS tagger_db;"
 #docker exec roach ./cockroach sql --insecure --execute="DROP DATABASE IF EXISTS tagger_db;"
 
-echo "DB schema initialized"
 #sleep infinity
 sleep 2
 

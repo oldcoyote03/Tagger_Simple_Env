@@ -6,14 +6,14 @@ services:
     container_name: flask-api
     ports:
       - 5000:5000
-    image: oldcoyote03/tagger-api:v0.9
+    image: oldcoyote03/tagger-api:v0.10
     depends_on:
       - roach
     command: sleep infinity
 
   roach:
     container_name: roach
-    image: cockroachdb/cockroach:v21.2.9
+    image: cockroachdb/cockroach:v22.1.6
     command: start-single-node --insecure
     ports:
       - 26257:26257
