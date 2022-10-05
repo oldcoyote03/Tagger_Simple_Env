@@ -13,3 +13,4 @@ WORKDIR /tagger_api
 RUN git checkout "develop"
 RUN pip install -r requirements.txt
 CMD [ "python", "./run.py"]
+#CMD [ "sleep", "infinity" ]
