@@ -9,6 +9,8 @@ services:
     image: oldcoyote03/tagger-api:v0.11
     depends_on:
       - roach
+    environment:
+      - SQLALCHEMY_DATABASE_URI=cockroachdb://root@roach:26257/tagger_db?sslmode=disable
     command: sleep infinity
 
   roach:
