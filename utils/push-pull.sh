@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# ./push-pull.sh -m "commit message"
+# CMD_PATH=/Users/nickolasvela/Documents/dev/Repositories/Tagger_Simple_Env/utils
+# $CMD_PATH/push-pull.sh -m "commit message"
 
 while getopts m:d flag
 do
