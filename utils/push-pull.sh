@@ -1,11 +1,12 @@
 #!/bin/sh
 
-# ./push-pull.sh -m "commit message"
+# ./push-pull.sh -m "commit message" -p
 
-while getopts m: flag
+while getopts m:d flag
 do
     case "${flag}" in
         m) msg=${OPTARG};;
+        p) pull=1;;
     esac
 done
 
@@ -24,7 +25,12 @@ git push --set-upstream origin develop
 
 sleep 10
 
-#echo "pull"
-#docker exec flask-api git pull
+if [ ! -z "$pull" ]
+then
+    echo "pull"
+    docker exec flask-api git pull
+    sleep 5
+else
+    echo "skip pull"
+fi
 
-sleep 5
