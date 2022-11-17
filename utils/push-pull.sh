@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# ./push-pull.sh -m "commit message" -p
+# ./push-pull.sh -m "commit message"
 
 while getopts m:d flag
 do
@@ -14,8 +14,6 @@ if [ -z "$msg" ]
 then
     echo "missing commit message -m"
     exit 1
-else
-    echo "commit message: $msg"
 fi
 
 echo "push"
@@ -25,12 +23,7 @@ git push --set-upstream origin develop
 
 sleep 10
 
-if [ ! -z "$pull" ]
-then
-    echo "pull"
-    docker exec flask-api git pull
-    sleep 5
-else
-    echo "skip pull"
-fi
+echo "pull"
+docker exec flask-api git pull
+sleep 5
 
