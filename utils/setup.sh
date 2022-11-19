@@ -25,5 +25,10 @@ sleep infinity
 
 #docker exec -it db-init /bin/sh
 #docker exec -it flask-api /bin/bash
+#docker exec -d flask-api python /tagger_api/run.py
+#docker exec flask-api pytest /tagger_api/app/test/test_mock_app.py -v -s --env=dev
+#docker exec flask-api pytest /tagger_api/app/test/test_app.py -v -s --env=test
+#docker exec -d flask-api apt-get -y install nano net-tools
 #netstat -tulnp | grep :5000
+#nano /tagger_api/app/api.py
 #kill 
