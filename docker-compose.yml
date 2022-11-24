@@ -6,9 +6,11 @@ services:
     container_name: flask-api
     ports:
       - 5000:5000
-    image: oldcoyote03/tagger-api:v0.10
+    image: oldcoyote03/tagger-api:v0.11
     depends_on:
       - roach
+    environment:
+      - SQLALCHEMY_DATABASE_URI=cockroachdb://root@roach:26257/tagger_db?sslmode=disable
     command: sleep infinity
 
   roach:
@@ -23,8 +25,7 @@ services:
     container_name: db-init
     image: docker:20.10.12
     volumes:
-      - ./setup.sh:/tmp/setup.sh
+      - ./utils/setup.sh:/tmp/setup.sh
       - /var/run/docker.sock:/var/run/docker.sock
     entrypoint: "/bin/sh"
     command: "/tmp/setup.sh"
-
