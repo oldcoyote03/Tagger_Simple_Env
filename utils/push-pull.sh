@@ -17,14 +17,17 @@ then
     exit 1
 fi
 
-echo "push"
+echo; echo "push"
 git add -A
 git commit -m "$msg"
 git push --set-upstream origin develop
 
 sleep 10
 
-echo "pull"
-docker exec flask-api git pull
+echo; echo "pull"
+#docker exec flask-api git pull
+docker exec flask-api git fetch
+docker exec flask-api git reset --hard HEAD
+docker exec flask-api git merge origin/develop
 sleep 5
 
