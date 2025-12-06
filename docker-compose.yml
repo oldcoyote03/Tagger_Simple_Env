@@ -4,17 +4,20 @@ services:
 
   flask-api:
     container_name: flask-api
+    # platform: linux/amd64
     ports:
       - 5000:5000
-    image: oldcoyote03/tagger-api:v0.11
+    image: oldcoyote03/tagger-api:v0.15
     depends_on:
       - roach
     environment:
-      - SQLALCHEMY_DATABASE_URI=cockroachdb://root@roach:26257/tagger_db?sslmode=disable
+      - APP_ENV=local
+      - DATABASE_URL=cockroachdb://root@roach:26257/tagger_db?sslmode=disable
     command: sleep infinity
 
   roach:
     container_name: roach
+    # platform: linux/amd64
     image: cockroachdb/cockroach:v22.1.6
     command: start-single-node --insecure
     ports:
@@ -23,6 +26,7 @@ services:
 
   db-init:
     container_name: db-init
+    # platform: linux/amd64
     image: docker:20.10.12
     volumes:
       - ./utils/setup.sh:/tmp/setup.sh

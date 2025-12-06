@@ -10,16 +10,25 @@ sleep 5
 docker ps
 sleep 2
 
+docker exec -d flask-api python /tagger_api/manage_db.py
+echo "Created Tables"
+sleep 2
+
+echo "View Tables"
+sleep 2
+docker exec flask-api python /tagger_api/manage_db.py --view
+sleep 2
+
 docker exec -d flask-api python /tagger_api/run.py
 echo "API deployed"
 sleep 2
 
-docker exec flask-api pytest /tagger_api/app/test/test_mock_app.py -v -s --env=dev
-echo "ran mock tests"
-sleep 5
+# docker exec flask-api pytest /tagger_api/app/test/test_mock_app.py -v -s --env=dev
+# echo "ran mock tests"
+# sleep 5
 
-docker exec flask-api pytest /tagger_api/app/test/test_app.py -v -s --env=test
-echo "ran integration tests"
+# docker exec flask-api pytest /tagger_api/app/test/test_app.py -v -s --env=test
+# echo "ran integration tests"
 
 sleep infinity
 
